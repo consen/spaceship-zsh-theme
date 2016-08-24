@@ -16,6 +16,7 @@ SPACESHIP_PROMPT_TRUNC="${SPACESHIP_PROMPT_TRUNC:-3}"
 
 # GIT
 SPACESHIP_GIT_SHOW="${SPACESHIP_GIT_SHOW:-true}"
+SPACESHIP_GIT_SYMBOL="${SPACESHIP_GIT_SYMBOL:-}"
 SPACESHIP_GIT_UNCOMMITTED="${SPACESHIP_GIT_UNCOMMITTED:-+}"
 SPACESHIP_GIT_UNSTAGED="${SPACESHIP_GIT_UNSTAGED:-!}"
 SPACESHIP_GIT_UNTRACKED="${SPACESHIP_GIT_UNTRACKED:-?}"
@@ -33,6 +34,7 @@ SPACESHIP_RUBY_SYMBOL="${SPACESHIP_RUBY_SYMBOL:-💎}"
 
 # VENV
 SPACESHIP_VENV_SHOW="${SPACESHIP_VENV_SHOW:-true}"
+SPACESHIP_VENV_SYMBOL="${SPACESHIP_VENV_SYMBOL:-🐍}"
 
 # Username.
 # If user is root, then pain it in red. Otherwise, just print in yellow.
@@ -149,7 +151,7 @@ spaceship_git_status() {
 
     echo -n " %Bon%b "
     echo -n "%{$fg_bold[magenta]%}"
-    echo -n "$(git_current_branch)"
+    echo -n "${SPACESHIP_GIT_SYMBOL} $(git_current_branch)"
     echo -n "%{$reset_color%}"
     echo -n "%{$fg_bold[red]%}"
     echo -n "$indicators"
@@ -167,7 +169,7 @@ spaceship_venv_status() {
   [ -n "$VIRTUAL_ENV" ] && [ -n $VIRTUAL_ENV_DISABLE_PROMPT ] || return
   echo -n " %Bvia%b "
   echo -n "%{$fg_bold[blue]%}"
-  echo -n "$(basename $VIRTUAL_ENV)"
+  echo -n "${SPACESHIP_VENV_SYMBOL} $(basename $VIRTUAL_ENV)"
   echo -n "%{$reset_color%}"
 }
 
@@ -179,7 +181,6 @@ spaceship_nvm_status() {
   $(type nvm >/dev/null 2>&1) || return
 
   local nvm_status=$(nvm current 2>/dev/null)
-  #[[ "${nvm_status}" == "system" ]] && return
   [[ "${nvm_status}" == "none" ]] && return
   nvm_status=${nvm_status}
 
