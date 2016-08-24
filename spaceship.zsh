@@ -163,7 +163,8 @@ spaceship_venv_status() {
   [[ $SPACESHIP_VENV_SHOW == false ]] && return
 
   # Check if the current directory running via Virtualenv
-  [ -n "$VIRTUAL_ENV" ] && $(type deactivate >/dev/null 2>&1) || return
+  #[ -n "$VIRTUAL_ENV" ] && $(type deactivate >/dev/null 2>&1) || return
+  [ -n "$VIRTUAL_ENV" ] && [ -n $VIRTUAL_ENV_DISABLE_PROMPT ] || return
   echo -n " %Bvia%b "
   echo -n "%{$fg_bold[blue]%}"
   echo -n "$(basename $VIRTUAL_ENV)"
@@ -178,7 +179,8 @@ spaceship_nvm_status() {
   $(type nvm >/dev/null 2>&1) || return
 
   local nvm_status=$(nvm current 2>/dev/null)
-  [[ "${nvm_status}" == "system" ]] && return
+  #[[ "${nvm_status}" == "system" ]] && return
+  [[ "${nvm_status}" == "none" ]] && return
   nvm_status=${nvm_status}
 
   echo -n " %Bvia%b "
