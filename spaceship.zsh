@@ -42,7 +42,7 @@ spaceship_user() {
   if [[ $USER == 'root' ]]; then
     echo -n "%{$fg_bold[red]%}"
   else
-    echo -n "%{$fg_bold[yellow]%}"
+    echo -n "%{$fg[yellow]%}"
   fi
   echo -n "%n"
   echo -n "%{$reset_color%}"
@@ -55,7 +55,7 @@ spaceship_host() {
   if [[ -n $SSH_CONNECTION ]]; then
     echo -n "$(spaceship_user)"
     echo -n " %Bat%b "
-    echo -n "%{$fg_bold[green]%}%m%{$reset_color%}"
+    echo -n "%{$fg_bold[blue]%}%m%{$reset_color%}"
     echo -n " %Bin%b "
   elif [[ $LOGNAME != $USER ]] || [[ $USER == 'root' ]]; then
     echo -n "$(spaceship_user)"
