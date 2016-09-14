@@ -55,7 +55,7 @@ spaceship_host() {
   if [[ -n $SSH_CONNECTION ]]; then
     echo -n "$(spaceship_user)"
     echo -n " %Bat%b "
-    echo -n "%{$fg_bold[blue]%}%m%{$reset_color%}"
+    echo -n "%{$fg[blue]%}%m%{$reset_color%}"
     echo -n " %Bin%b "
   elif [[ $LOGNAME != $USER ]] || [[ $USER == 'root' ]]; then
     echo -n "$(spaceship_user)"
@@ -67,7 +67,7 @@ spaceship_host() {
 # Current directory.
 # Return only three last items of path
 spaceship_current_dir() {
-  echo -n "%{$fg_bold[blue]%}"
+  echo -n "%{$fg[blue]%}"
   echo -n "%${SPACESHIP_PROMPT_TRUNC}~";
   echo -n "%{$reset_color%}"
 }
@@ -168,7 +168,7 @@ spaceship_venv_status() {
   #[ -n "$VIRTUAL_ENV" ] && $(type deactivate >/dev/null 2>&1) || return
   [ -n "$VIRTUAL_ENV" ] && [ -n $VIRTUAL_ENV_DISABLE_PROMPT ] || return
   echo -n " %Bvia%b "
-  echo -n "%{$fg_bold[blue]%}"
+  echo -n "%{$fg[blue]%}"
   echo -n "${SPACESHIP_VENV_SYMBOL} $(basename $VIRTUAL_ENV)"
   echo -n "%{$reset_color%}"
 }
