@@ -67,7 +67,7 @@ spaceship_host() {
 # Current directory.
 # Return only three last items of path
 spaceship_current_dir() {
-  echo -n "%{$fg_bold[cyan]%}"
+  echo -n "%{$fg_bold[blue]%}"
   echo -n "%${SPACESHIP_PROMPT_TRUNC}~";
   echo -n "%{$reset_color%}"
 }
@@ -150,7 +150,7 @@ spaceship_git_status() {
     [ -n "${indicators}" ] && indicators=" [${indicators}]";
 
     echo -n " %Bon%b "
-    echo -n "%{$fg_bold[magenta]%}"
+    echo -n "%{$fg_bold[red]%}"
     echo -n "${SPACESHIP_GIT_SYMBOL} $(git_current_branch)"
     echo -n "%{$reset_color%}"
     echo -n "%{$fg_bold[red]%}"
